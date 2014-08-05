@@ -1,0 +1,10 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore Spring Binstubs
+/bin
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+.vagrant/
