@@ -1,1 +1,1 @@
-json.token "Not Implemented"
+json.token @token

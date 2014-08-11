@@ -1,4 +1,5 @@
 class UsersController < ActionController::Base
+  include RequireAuthentication
   respond_to :json
 
   def create
@@ -22,8 +23,16 @@ class UsersController < ActionController::Base
       if not @authenticated
         render :authentication_failed, :status => 401
       end
+
+      @token = Token.generate(@authenticated.id)
     else
       render :authentication_malformed, :status => 400
     end
+  end
+
+  def get
+    require_authentication
+
+    @user = User.find_by_id(Token.authenticate(params['token']))
   end
 end
