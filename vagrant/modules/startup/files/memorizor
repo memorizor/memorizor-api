@@ -1,0 +1,31 @@
+#! /bin/sh
+
+case "$1" in
+  start)    
+    echo "Starting memorizor"
+    cd /vagrant
+    PATH=/usr/local/rbenv/shims:/bin:/usr/bin /usr/local/rbenv/versions/2.1.2/bin/rails s -d
+    exit $?
+    ;;
+  stop)
+    echo "Stopping memorizor"
+    kill `cat /vagrant/tmp/pids/server.pid`
+    exit 0
+    ;;
+  status)
+    if [ -f /vagrant/tmp/pids/server.pid ];
+    then
+   	echo "Memorizor is running"
+        exit 0
+    else
+   	echo "Memorizor not running"
+        exit 1
+    fi
+    ;;
+  *)
+    echo "Usage: /etc/init.d/memorizor {start|stop|status}"
+    exit 1
+    ;;
+esac
+
+exit 0

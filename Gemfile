@@ -8,8 +8,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'unicorn', '~> 4.8.3'
 gem 'redis', '~> 3.1.0'
 
-gem 'spring', group: :development
-gem 'rake', '~> 10.3.2', group: :development
-
+gem 'spring', :group => :development
+gem 'rake', '~> 10.3.2', :group => :development
 
 

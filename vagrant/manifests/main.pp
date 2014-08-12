@@ -51,19 +51,67 @@ rbenv::build { '2.1.2':
 } ->
 exec { 'Installing Bundler...':
   command => 'gem install bundler --no-ri --no-rdoc',
-  path    => ['/bin', '/usr/bin', '/usr/local/rbenv/shims'],
-  cwd     => '/vagrant',
+  path    => ['/usr/local/rbenv/shims', '/bin', '/usr/bin'],
 } ->
 package { 'libpq-dev': 
   ensure => latest,
 } ->
 exec { 'Installing Dependencies...':
   command => 'bundle install',
-  path    => ['/bin', '/usr/bin', '/usr/local/rbenv/shims'],
+  path    => ['/usr/local/rbenv/shims', '/bin', '/usr/bin'],
   cwd     => '/vagrant',
 } ->
-exec { 'Granting Write Acess to Gems Folder...':
+exec { 'Reloading Rbenv Shims...':
+  command => 'rbenv rehash',
+  path    => ['/usr/local/rbenv/bin', '/bin', '/usr/bin'],
+} ->
+exec { 'Granting Write Access to Gems Folder...':
   command => 'chown -R vagrant /usr/local/rbenv && chmod -R u+rX /usr/local/rbenv',
   path    => ['/bin'],
 } 
 
+exec { 'Set up databases...':
+  command => 'rake db:setup',
+  path    => ['/usr/local/rbenv/versions/2.1.2/bin', '/bin', '/usr/bin'],
+  cwd     => '/vagrant',
+  require => [Exec['Installing Dependencies...'], Class['postgresql::server']]
+}
+
+## 
+#
+# Uncomment to have memorizor automatically run on startup
+#
+#file { '/etc/init.d/memorizor':
+#  ensure    => file,
+#  source    => 'puppet:///modules/startup/memorizor',
+#  owner     => root,
+#  group     => root,
+#  mode      => '0755',
+#  require   => [Exec['Set up databases...'], Class['redis']]
+#} ->
+#service { 'memorizor' :
+#  ensure    => running,
+#  enable    => true,
+#}
+
+package { 'libsqlite3-dev': 
+  ensure => latest,
+}
+
+exec { 'Installing Mailcatcher...':
+  command => 'gem install mailcatcher --no-ri --no-rdoc',
+  path    => ['/usr/local/rbenv/shims', '/bin', '/usr/bin'],
+  require => [Exec['Installing Dependencies...'], Package['libsqlite3-dev']],
+} ->
+file { '/etc/init.d/mailcatcher':
+  ensure    => file,
+  source    => 'puppet:///modules/startup/mailcatcher',
+  owner     => root,
+  group     => root,
+  mode      => '0755', 
+} ->
+service { 'mailcatcher' :
+  ensure    => running,
+  enable    => true,
+  hasstatus => false,  
+} 
