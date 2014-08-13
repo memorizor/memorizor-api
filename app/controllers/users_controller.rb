@@ -9,6 +9,7 @@ class UsersController < ActionController::Base
       render :create_malformed, :status => 400
     else
       @user.save!
+      UserMailer.welcome_email(@user).deliver
     end
   end
 

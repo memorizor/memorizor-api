@@ -1,0 +1,9 @@
+<%= @user.name %>,
+
+Thanks for verifying your email address.
+To complete the process, please follow the follwing link:
+<%= [ActionMailer::Base.default_url_options[:host], ActionMailer::Base.default_url_options[:port]].compact.join(':') << '\\verify\\' +  @token %>
+
+Good luck on your memorization journey!
+
+- The Memorizor Team

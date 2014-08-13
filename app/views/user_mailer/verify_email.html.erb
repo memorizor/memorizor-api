@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+
+  <p>
+    <%= @user.name %>,
+  </p>
+
+  <p>
+    Thanks for verifying your email address.
+  </p>
+
+  <p>
+    To complete the process, please follow the follwing link: <br>
+    <%= [ActionMailer::Base.default_url_options[:host], ActionMailer::Base.default_url_options[:port]].compact.join(':') << '\\verify\\' +  @token %>
+  </p>
+
+  <p>
+    Good luck on your memorization journey!
+  </p>
+
+  <p>
+    - The Memorizor Team
+  </p>
+  </body>
+</html>

@@ -1,4 +1,5 @@
 class Token
+  # Token used for authentication with memorizor
   require 'securerandom'
 
   SECONDS_UNTIL_EXPIRATION = 604800 # One week
