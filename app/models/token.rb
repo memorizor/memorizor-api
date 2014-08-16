@@ -11,7 +11,7 @@ class Token
      return token
   end
 
-  def self.remove(token)
+  def self.delete(token)
     $redis.del("token." << token)
   end
 

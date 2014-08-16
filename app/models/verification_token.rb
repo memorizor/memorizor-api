@@ -6,15 +6,15 @@ class VerificationToken
 
   def self.generate(user_id)
      token = SecureRandom.urlsafe_base64 30
-     $redis.set("verfiy." << token, user_id)
-     $redis.expire("verfiy." << token, SECONDS_UNTIL_EXPIRATION)
+     $redis.set("verify." << token, user_id)
+     $redis.expire("verify." << token, SECONDS_UNTIL_EXPIRATION)
      return token
   end
 
   def self.verify(token)
-    if $redis.exists("verfiy." << token)
-      User.find_by_id($redis.get("verfiy." << token)).update!(:verified => true)
-      $redis.del("verfiy." << token)
+    if $redis.exists("verify." << token)
+      User.find_by_id($redis.get("verify." << token)).update!(:verified => true)
+      $redis.del("verify." << token)
     end
   end
 end

@@ -3,7 +3,7 @@ class VerifiesController < ActionController::Base
   respond_to :json
 
   def create
-    require_authentication
+    require_authentication or return
     @user = User.find_by_id(Token.authenticate(params['token']))
     if @user.verified
       render :already_verified
@@ -13,7 +13,7 @@ class VerifiesController < ActionController::Base
     end
   end
 
-  def show
+  def index
     if params.has_key? 'verification_token'
       VerificationToken.verify params['verification_token']
     else

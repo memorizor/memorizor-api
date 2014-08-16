@@ -32,13 +32,13 @@ class UsersController < ActionController::Base
   end
 
   def get
-    require_authentication
+    require_authentication or return
 
     @user = User.find_by_id(Token.authenticate(params['token']))
   end
 
   def update
-    require_authentication
+    require_authentication or return
 
     @user = User.find_by_id(Token.authenticate(params['token']))
 
@@ -61,4 +61,10 @@ class UsersController < ActionController::Base
       @user.save!
     end
   end
+
+  def logout
+    require_authentication or return
+
+    Token.delete params['token']
+  end 
 end
