@@ -36,4 +36,29 @@ class UsersController < ActionController::Base
 
     @user = User.find_by_id(Token.authenticate(params['token']))
   end
+
+  def update
+    require_authentication
+
+    @user = User.find_by_id(Token.authenticate(params['token']))
+
+    if params.has_key?(:name)
+      @user.name = params[:name]
+    end
+
+    if params.has_key?(:email)
+      @user.email = params[:email]
+      @user.verified = false
+    end
+
+    if params.has_key?(:password)
+      @user.password = params[:password]
+    end
+
+    if @user.invalid?
+      render :create_malformed, :status => 400
+    else
+      @user.save!
+    end
+  end
 end

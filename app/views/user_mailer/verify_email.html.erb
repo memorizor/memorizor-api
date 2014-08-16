@@ -14,8 +14,8 @@
   </p>
 
   <p>
-    To complete the process, please follow the follwing link: <br>
-    <%= [ActionMailer::Base.default_url_options[:host], ActionMailer::Base.default_url_options[:port]].compact.join(':') << '\\verify\\' +  @token %>
+    To complete the process, please use the following token: <br>
+    <%= @token %>
   </p>
 
   <p>
