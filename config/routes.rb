@@ -9,4 +9,8 @@ Rails.application.routes.draw do
   
   post '/verify' => 'verifies#create'
   get '/verify' => 'verifies#index'
+
+  post '/reset' => 'reset_password#create'
+  post '/reset/valid' => 'reset_password#valid'
+  get '/reset' => 'reset_password#index'
 end

@@ -23,6 +23,7 @@ class UsersController < ActionController::Base
 
       if not @authenticated
         render :authentication_failed, :status => 401
+        return
       end
 
       @token = Token.generate(@authenticated.id)
