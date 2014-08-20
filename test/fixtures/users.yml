@@ -1,0 +1,5 @@
+testing:
+  name: test
+  email: test@fixture.com
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  verified: false
