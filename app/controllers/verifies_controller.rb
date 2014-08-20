@@ -1,9 +1,9 @@
 class VerifiesController < ActionController::Base
   include RequireAuthentication
   respond_to :json
+  before_filter :require_authentication, :only => [:create]
 
   def create
-    require_authentication or return
     @user = User.find_by_id(Token.authenticate(params['token']))
     if @user.verified
       render :already_verified

@@ -1,6 +1,7 @@
 class UsersController < ActionController::Base
   include RequireAuthentication
   respond_to :json
+  before_filter :require_authentication, :only => [:get, :update, :logour]
 
   def create
     @user = User.new(:name => params['name'], :password => params['password'], :email => params['email'])
@@ -33,15 +34,11 @@ class UsersController < ActionController::Base
   end
 
   def get
-    require_authentication or return
-
-    @user = User.find_by_id(Token.authenticate(params['token']))
+    @user = authenticated_user
   end
 
   def update
-    require_authentication or return
-
-    @user = User.find_by_id(Token.authenticate(params['token']))
+    @user = authenticated_user
 
     if params.has_key?(:name)
       @user.name = params[:name]
