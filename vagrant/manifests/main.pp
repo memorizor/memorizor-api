@@ -46,14 +46,14 @@ class { 'rbenv':
 
 rbenv::plugin { 'sstephenson/ruby-build': }
 
-rbenv::build { '2.1.2': 
-  global => true 
+rbenv::build { '2.1.3': 
+  global => true
 } ->
 exec { 'Installing Bundler...':
   command => 'gem install bundler --no-ri --no-rdoc',
   path    => ['/usr/local/rbenv/shims', '/bin', '/usr/bin'],
 } ->
-package { 'libpq-dev': 
+package { 'libpq-dev':
   ensure => latest,
 } ->
 exec { 'Installing Dependencies...':
@@ -68,16 +68,16 @@ exec { 'Reloading Rbenv Shims...':
 exec { 'Granting Write Access to Gems Folder...':
   command => 'chown -R vagrant /usr/local/rbenv && chmod -R u+rX /usr/local/rbenv',
   path    => ['/bin'],
-} 
+}
 
 exec { 'Set up databases...':
   command => 'rake db:setup',
-  path    => ['/usr/local/rbenv/versions/2.1.2/bin', '/bin', '/usr/bin'],
+  path    => ['/usr/local/rbenv/versions/2.1.3/bin', '/bin', '/usr/bin'],
   cwd     => '/vagrant',
   require => [Exec['Installing Dependencies...'], Class['postgresql::server']]
 }
 
-## 
+##
 #
 # Uncomment to have memorizor automatically run on startup
 #
@@ -94,7 +94,7 @@ exec { 'Set up databases...':
 #  enable    => true,
 #}
 
-package { 'libsqlite3-dev': 
+package { 'libsqlite3-dev':
   ensure => latest,
 }
 
@@ -108,10 +108,10 @@ file { '/etc/init.d/mailcatcher':
   source    => 'puppet:///modules/startup/mailcatcher',
   owner     => root,
   group     => root,
-  mode      => '0755', 
+  mode      => '0755',
 } ->
 service { 'mailcatcher' :
   ensure    => running,
   enable    => true,
-  hasstatus => false,  
-} 
+  hasstatus => false,
+}
