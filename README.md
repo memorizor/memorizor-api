@@ -1,4 +1,4 @@
-# Memorizor API
+# Memorizor API [![Build Status](https://travis-ci.org/memorizor/memorizor-api.svg)](https://travis-ci.org/memorizor/memorizor-api)
 
 This is the home of the Memorizor API.
 
