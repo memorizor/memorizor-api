@@ -11,7 +11,7 @@ class ResetPasswordController < ActionController::Base
 
   def valid
     @valid = reset_token_valid
-    render(:index_malformed, :status => 400) if @valid.nil?     
+    render(:index_malformed, :status => 400) if @valid.nil?
   end
 
   def index
