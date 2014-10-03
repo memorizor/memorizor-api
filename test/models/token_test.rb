@@ -11,4 +11,10 @@ class TokenTest < ActiveSupport::TestCase
 
     assert_equal Token.authenticate(token), nil
   end
+
+  test "Fails with an invalid token" do
+    token = "invalid token"
+
+    assert_equal Token.authenticate(token), nil
+  end
 end
