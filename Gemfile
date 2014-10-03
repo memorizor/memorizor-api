@@ -10,3 +10,5 @@ gem 'redis', '~> 3.1.0'
 
 gem 'spring', :group => :development
 gem 'rake', '~> 10.3.2', :group => :development
+
+gem "codeclimate-test-reporter", group: :test, require: nil
