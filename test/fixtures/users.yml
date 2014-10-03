@@ -8,3 +8,8 @@ verification_token:
   email: verification_token@fixture.com
   password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
   verified: false
+reset_token:
+  name: reset_token
+  email: reset_token@fixture.com
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  verified: false
