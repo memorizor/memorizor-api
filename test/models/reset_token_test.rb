@@ -14,7 +14,7 @@ class ResetTokenTest < ActiveSupport::TestCase
     assert_not $redis.exists("reset." << token)
   end
 
-  test "Fails with a invalid reset token" do
+  test "Fails with an invalid reset token" do
     token = "invalid token"
 
     assert_not ResetToken.valid?(token)
