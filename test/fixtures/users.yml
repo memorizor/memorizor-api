@@ -3,3 +3,8 @@ testing:
   email: test@fixture.com
   password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
   verified: false
+verification_token:
+  name: verification_token
+  email: verification_token@fixture.com
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  verified: false
