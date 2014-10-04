@@ -1,7 +1,7 @@
 class UsersController < ActionController::Base
   include RequireAuthentication
   respond_to :json
-  before_filter :require_authentication, :only => [:get, :update, :logour]
+  before_filter :require_authentication, :only => [:get, :update, :logout]
 
   def create
     @user = User.new(:name => params['name'], :password => params['password'], :email => params['email'])
@@ -61,8 +61,6 @@ class UsersController < ActionController::Base
   end
 
   def logout
-    require_authentication or return
-
     Token.delete params['token']
-  end 
+  end
 end

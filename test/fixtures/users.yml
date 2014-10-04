@@ -13,3 +13,13 @@ reset_token:
   email: reset_token@fixture.com
   password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
   verified: false
+authentication_test:
+  name: authenticaition
+  email: authenticaition@fixture.com
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  verified: false
+update_test:
+  name: update
+  email: update@fixture.com
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  verified: true
