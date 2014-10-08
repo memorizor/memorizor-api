@@ -88,4 +88,15 @@ class UsersControllerTest < ActionController::TestCase
 
     Token.delete(token)
   end
+
+  test "Update user doesn't accept malformed arguments" do
+    token = Token.generate(users(:update_test).id)
+
+    get :update, {:token => token, :email => "updatedupdate_test.com"}
+
+    assert_response 400
+    assert_not_equal "updatedupdate_test.com", User.find_by_id(users(:update_test).id).email
+
+    Token.delete(token)
+  end
 end
