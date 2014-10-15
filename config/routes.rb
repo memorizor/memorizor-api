@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get '/user' => 'users#get'
   patch '/user' => 'users#update'
-  
+
   post '/verify' => 'verifies#create'
   get '/verify' => 'verifies#index'
 
