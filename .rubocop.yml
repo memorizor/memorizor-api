@@ -8,6 +8,7 @@ AllCops:
     - 'vagrant/**/*'
     - 'db/schema.rb'
     - 'bin/*'
+    - 'vendor/**/*'
 Documentation:
   Enabled: false
 GlobalVars:
