@@ -8,7 +8,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'unicorn', '~> 4.8.3'
 gem 'redis', '~> 3.1.0'
 
-gem 'spring', :group => :development
-gem 'rake', :group => :development
+gem 'spring', group: :development
+gem 'rake', group: :development
 
-gem "codeclimate-test-reporter", group: :test, require: nil
+gem 'codeclimate-test-reporter', group: :test, require: nil
+gem 'rubocop', group: :development, require: nil

@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class TokenTest < ActiveSupport::TestCase
-  test "Generates, uses, and deletes token correctly" do
-    test_user_id = "0"
+  test 'Generates, uses, and deletes token correctly' do
+    test_user_id = '0'
     token = Token.generate(test_user_id)
 
     assert_equal Token.authenticate(token), test_user_id
@@ -12,8 +12,8 @@ class TokenTest < ActiveSupport::TestCase
     assert_equal Token.authenticate(token), nil
   end
 
-  test "Fails with an invalid token" do
-    token = "invalid token"
+  test 'Fails with an invalid token' do
+    token = 'invalid token'
 
     assert_equal Token.authenticate(token), nil
   end

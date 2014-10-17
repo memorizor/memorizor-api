@@ -1,14 +1,14 @@
 errors = []
 error_descriptions = []
 
-unless params.has_key?(:name)
+unless params.key? 'name'
   errors.push 2
-  error_descriptions.push "Username or email is required."
+  error_descriptions.push 'Username or email is required.'
 end
 
-unless params.has_key?(:password)
+unless params.key? 'password'
   errors.push 3
-  error_descriptions.push "Password is required."
+  error_descriptions.push 'Password is required.'
 end
 
 json.errors errors

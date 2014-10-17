@@ -1,13 +1,14 @@
 class UsersController < ActionController::Base
   include RequireAuthentication
   respond_to :json
-  before_filter :require_authentication, :only => [:get, :update, :logout]
+  before_filter :require_authentication, only: [:get, :update, :logout]
 
   def create
-    @user = User.new(:name => params['name'], :password => params['password'], :email => params['email'])
+    @user = User.new name: params['name'], password: params['password'],
+                     email: params['email']
 
     if @user.invalid?
-      render :create_malformed, :status => 400
+      render :create_malformed, status: 400
     else
       @user.save!
       UserMailer.welcome_email(@user).deliver
@@ -15,21 +16,23 @@ class UsersController < ActionController::Base
   end
 
   def authenticate
-    if params.has_key?(:name) and params.has_key?(:password)
-      @authenticated = User.find_by(:name => params['name']).try(:authenticate, params['password'])
+    if params.key?('name') && params.key?('password')
+      @authenticated = User.find_by(name: params['name'])
+                            .try(:authenticate, params['password'])
 
-      if not @authenticated
-        @authenticated = User.find_by(:email => params['name']).try(:authenticate, params['password'])
+      unless @authenticated
+        @authenticated = User.find_by(email: params['name'])
+                             .try(:authenticate, params['password'])
       end
 
-      if not @authenticated
-        render :authentication_failed, :status => 401
+      unless @authenticated
+        render :authentication_failed, status: 401
         return
       end
 
       @token = Token.generate(@authenticated.id)
     else
-      render :authentication_malformed, :status => 400
+      render :authentication_malformed, status: 400
     end
   end
 
@@ -40,21 +43,17 @@ class UsersController < ActionController::Base
   def update
     @user = authenticated_user
 
-    if params.has_key?(:name)
-      @user.name = params[:name]
-    end
+    @user.name = params['name'] if params.key? 'name'
 
-    if params.has_key?(:email)
-      @user.email = params[:email]
+    if params.key? 'email'
+      @user.email = params['email']
       @user.verified = false
     end
 
-    if params.has_key?(:password)
-      @user.password = params[:password]
-    end
+    @user.password = params['password'] if params.key? 'password'
 
     if @user.invalid?
-      render :create_malformed, :status => 400
+      render :create_malformed, status: 400
     else
       @user.save!
     end

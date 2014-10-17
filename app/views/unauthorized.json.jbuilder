@@ -1,2 +1,2 @@
 json.errors [401]
-json.error_descriptions ["Unauthorized"]
+json.error_descriptions ['Unauthorized']

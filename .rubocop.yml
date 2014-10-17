@@ -1,0 +1,17 @@
+AllCops:
+  Include:
+    - '**/*.json.jbuilder'
+    - '**/*.rake'
+    - 'Rakefile'
+    - 'config.ru'
+  Exclude:
+    - 'vagrant/**/*'
+    - 'db/schema.rb'
+    - 'bin/*'
+Documentation:
+  Enabled: false
+GlobalVars:
+  Enabled: false
+Metrics/MethodLength:
+  CountComments: false
+  Max: 20
