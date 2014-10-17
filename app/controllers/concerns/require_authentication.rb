@@ -2,7 +2,6 @@ module RequireAuthentication
   extend ActiveSupport::Concern
 
   def require_authentication
-    logger.info "---------------------> called"
     if params.has_key?(:token)
       render(:template => "unauthorized", :status => 401) unless Token.authenticate(params['token'])
     else
