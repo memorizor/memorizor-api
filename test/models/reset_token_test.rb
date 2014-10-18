@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ResetTokenTest < ActiveSupport::TestCase
   test 'Generates, uses, and deletes reset token correctly' do
-    test_user_id = users(:reset_token).id
+    test_user_id = users(:testing).id
     token = ResetToken.generate test_user_id
 
     assert ResetToken.valid?(token)

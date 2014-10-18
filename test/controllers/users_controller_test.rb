@@ -21,46 +21,46 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test 'Authenticates with username' do
-    post :authenticate, name: users(:authentication_test).name,
+    post :authenticate, name: users(:testing).name,
                         password: 'password'
 
     assert_response :success
 
     token = JSON.parse(@response.body)['token']
 
-    assert_equal users(:authentication_test).id.to_s, Token.authenticate(token)
+    assert_equal users(:testing).id.to_s, Token.authenticate(token)
 
     Token.delete(token)
   end
 
   test 'Authenticates with email' do
-    post :authenticate, name: users(:authentication_test).email,
+    post :authenticate, name: users(:testing).email,
                         password: 'password'
 
     assert_response :success
 
     token = JSON.parse(@response.body)['token']
 
-    assert_equal users(:authentication_test).id.to_s, Token.authenticate(token)
+    assert_equal users(:testing).id.to_s, Token.authenticate(token)
 
     Token.delete(token)
   end
 
   test 'Authentication fails with wrong password' do
-    post :authenticate, name: users(:authentication_test).email,
+    post :authenticate, name: users(:testing).email,
                         password: 'not the password'
 
     assert_response 401
   end
 
   test 'Authentication returns 400 with malformed request' do
-    post :authenticate, name: users(:authentication_test).email
+    post :authenticate, name: users(:testing).email
 
     assert_response 400
   end
 
   test 'User logs out correctly' do
-    token = Token.generate(users(:authentication_test).id)
+    token = Token.generate(users(:testing).id)
 
     get :logout, token: token
 
@@ -69,12 +69,12 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test 'Get Authenticated User works correctly' do
-    token = Token.generate(users(:authentication_test).id)
+    token = Token.generate(users(:testing).id)
 
     get :get, token: token
 
     assert_response :success
-    assert_equal users(:authentication_test).id,
+    assert_equal users(:testing).id,
                  JSON.parse(@response.body)['id']
 
     Token.delete(token)
