@@ -10,3 +10,6 @@ unless params.key? 'password'
   errors.push 2
   error_descriptions.push 'Password is required.'
 end
+
+json.errors errors
+json.error_descriptions error_descriptions
