@@ -15,9 +15,10 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test 'Returns an error with invalid request' do
-    post :create, name: 'create_test', email: 'create_test@testing.com'
+    post :create
 
     assert_response 400
+    assert_equal [1, 2, 3, 4], JSON.parse(@response.body)['errors']
   end
 
   test 'Authenticates with username' do
@@ -51,12 +52,14 @@ class UsersControllerTest < ActionController::TestCase
                         password: 'not the password'
 
     assert_response 401
+    assert_equal [1], JSON.parse(@response.body)['errors']
   end
 
   test 'Authentication returns 400 with malformed request' do
-    post :authenticate, name: users(:testing).email
+    post :authenticate
 
     assert_response 400
+    assert_equal [2, 3], JSON.parse(@response.body)['errors']
   end
 
   test 'User logs out correctly' do
@@ -103,6 +106,7 @@ class UsersControllerTest < ActionController::TestCase
     get :update, token: token, email: 'updatedupdate_test.com'
 
     assert_response 400
+    assert_equal [4], JSON.parse(@response.body)['errors']
     assert_not_equal 'updatedupdate_test.com',
                      User.find_by_id(users(:update_test).id).email
 
