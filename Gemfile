@@ -3,7 +3,7 @@ ruby '2.1.3'
 
 gem 'rails', '4.1.6'
 gem 'pg', '~> 0.17.1'
-gem 'jbuilder', '~> 2.2.2'
+gem 'jbuilder', '~> 2.2.3'
 gem 'bcrypt', '~> 3.1.7'
 gem 'unicorn', '~> 4.8.3'
 gem 'redis', '~> 3.1.0'
