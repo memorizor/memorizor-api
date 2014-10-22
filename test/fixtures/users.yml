@@ -8,3 +8,8 @@ update_test:
   email: update@fixture.com
   password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
   verified: true
+verified_user:
+  name: verified
+  email: verified@fixture.com
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  verified: true
