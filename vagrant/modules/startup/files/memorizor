@@ -1,10 +1,10 @@
 #! /bin/sh
 
 case "$1" in
-  start)    
+  start)
     echo "Starting memorizor"
     cd /vagrant
-    PATH=/usr/local/rbenv/shims:/bin:/usr/bin /usr/local/rbenv/versions/2.1.2/bin/rails s -d
+    PATH=/usr/local/rbenv/shims:/bin:/usr/bin /usr/local/rbenv/versions/2.1.4/bin/rails s -d
     exit $?
     ;;
   stop)
