@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  resources :items, except: [:new, :edit]
+
   post '/register' => 'users#create'
 
   post '/authenticate' => 'users#authenticate'

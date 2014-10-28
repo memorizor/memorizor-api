@@ -11,7 +11,12 @@ module RequireAuthentication
     end
   end
 
+  def require_verification
+    render template: 'verification_required', status: 403 unless
+      authenticated_user.verified
+  end
+
   def authenticated_user
-    @user ||= User.find_by_id(Token.authenticate(params['token']))
+    @user = User.find_by_id(Token.authenticate(params['token']))
   end
 end

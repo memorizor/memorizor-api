@@ -2,7 +2,7 @@ require 'json'
 
 class RequireAuthenticationTest < ActionController::TestCase
   # Use user#get to test RequireAuthentication concern
-  test 'Returns an error without a token required' do
+  test 'Returns an error without a token' do
     @controller = UsersController.new
     get :get
 
@@ -16,5 +16,27 @@ class RequireAuthenticationTest < ActionController::TestCase
 
     assert_response 401
     assert_equal [401], JSON.parse(@response.body)['errors']
+  end
+
+  # Use Items#index to test require_verification
+  test 'Throws a error with a unverified user' do
+    token = Token.generate users(:testing).id
+    @controller = ItemsController.new
+    get :index, token: token
+
+    assert_response 403
+    assert_equal [403], JSON.parse(@response.body)['errors']
+
+    Token.delete(token)
+  end
+
+  test 'Works with a verfied user' do
+    token = Token.generate users(:verified_user).id
+    @controller = ItemsController.new
+    get :index, token: token
+
+    assert_response :success
+
+    Token.delete(token)
   end
 end
