@@ -1,0 +1,17 @@
+{
+  "CHANGELOG": "9a7c7133b94a4e4b03eba51212a45f2d",
+  "Gemfile": "31d67830f694c2af4c709d46c513bbc7",
+  "LICENSE": "391c93fec414bcea2a8aa9d34782c17b",
+  "Modulefile": "47f98a8b994700c4380645303600e9c7",
+  "README.md": "67b12cf482c95056ac8f06e0386bb2e4",
+  "Rakefile": "64c3c39c53f956c314dd2fd3306ac7b4",
+  "lib/facter/redis_version.rb": "466e448d3f2b2c677f58f2009b4638c2",
+  "manifests/init.pp": "bcb3d66c88ad31fb8f933ddc586f4d98",
+  "manifests/params.pp": "09673263bc33b10bd38e28f6c6ba5a06",
+  "metadata.json": "9a0bad8a32c92442a26b71024fea3709",
+  "spec/spec_helper.rb": "a55d1e6483344f8ec6963fcb2c220372",
+  "templates/redis.conf.erb": "1bb31a8a045a915da5367db8ab008805",
+  "templates/redis.logrotate.erb": "c1d0b11eeb8252e6be3f3e0cfe269414",
+  "tests/Puppetfile": "5580d0db50059fdc3d5ce7fef4198251",
+  "tests/init.pp": "4f1bf99f7776bf4ae3bc304153173142"
+}
