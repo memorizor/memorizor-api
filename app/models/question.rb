@@ -1,8 +1,8 @@
 class Question < ActiveRecord::Base
   validates :content, presence: true
   validates :review_at, presence: true
-  validates :type, presence: true
+  validates :answer_type, presence: true, inclusion: { in: [0] }
 
-  has_many :answer
+  has_many :answers
   belongs_to :user
 end

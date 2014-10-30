@@ -21,10 +21,13 @@ ActiveRecord::Schema.define(version: 20141022032838) do
   end
 
   create_table "questions", force: true do |t|
-    t.text     "content",   null: false
-    t.datetime "review_at", null: false
-    t.integer  "type",      null: false
+    t.text     "content",     null: false
+    t.datetime "review_at",   null: false
+    t.integer  "answer_type", null: false
+    t.integer  "user_id"
   end
+
+  add_index "questions", ["user_id"], name: "index_questions_on_user_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string  "name",                            null: false

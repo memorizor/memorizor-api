@@ -9,7 +9,14 @@ class ItemsController < ActionController::Base
   end
 
   def create
-    render nothing: true
+    @user = authenticated_user
+    @item = @user.questions.new content: params['content'], review_at: Time.now,
+                                answer_type: params['type']
+    if @item.invalid?
+      render :create_question_malformed, status: 400
+    else
+      @item.save!
+    end
   end
 
   def show
