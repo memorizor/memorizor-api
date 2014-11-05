@@ -24,7 +24,7 @@ class ResetToken
   def self.update_password(token, password)
     if $redis.exists('reset.' << token)
       User.find_by_id($redis.get('reset.' << token))
-          .update!(password: password)
+        .update!(password: password)
       $redis.del('reset.' << token)
     end
   end

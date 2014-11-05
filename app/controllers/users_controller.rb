@@ -18,11 +18,11 @@ class UsersController < ActionController::Base
   def authenticate
     if params.key?('name') && params.key?('password')
       @authenticated = User.find_by(name: params['name'])
-                            .try(:authenticate, params['password'])
+                       .try(:authenticate, params['password'])
 
       unless @authenticated
         @authenticated = User.find_by(email: params['name'])
-                             .try(:authenticate, params['password'])
+                         .try(:authenticate, params['password'])
       end
 
       unless @authenticated

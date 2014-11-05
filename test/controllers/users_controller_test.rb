@@ -95,7 +95,7 @@ class UsersControllerTest < ActionController::TestCase
     assert_equal false, User.find_by_id(users(:update_test).id).verified
     assert_equal 'update_works', User.find_by_id(users(:update_test).id).name
     assert User.find_by_id(users(:update_test).id)
-               .try(:authenticate, 'update works')
+      .try(:authenticate, 'update works')
 
     Token.delete(token)
   end

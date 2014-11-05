@@ -23,7 +23,7 @@ class ResetPasswordControllerTest < ActionController::TestCase
 
       assert_response :success
       assert User.find_by_id(users(:testing).id)
-                 .try(:authenticate, 'new password')
+        .try(:authenticate, 'new password')
 
       post :valid, reset_token: reset_token
 

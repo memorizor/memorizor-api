@@ -16,3 +16,5 @@ GlobalVars:
 Metrics/MethodLength:
   CountComments: false
   Max: 20
+Metrics/AbcSize:
+  Max: 25
