@@ -7,11 +7,14 @@ class ItemsControllerTest < ActionController::TestCase
 
   test 'create works' do
     token = Token.generate users(:verified_user).id
-    post :create, token: token, content: 'test', type: 0
+    post :create, token: token, content: 'test', type: 0, answers: ['testing']
 
     assert_response :success
     assert_equal 'test',
                  Question.find_by_id(JSON.parse(@response.body)['id']).content
+    assert_equal 'testing',
+                 Question.find_by_id(JSON.parse(@response.body)['id'])
+      .answers[0].content
   end
 
   test 'create fails with nothing included' do

@@ -16,6 +16,11 @@ class ItemsController < ActionController::Base
       render :create_question_malformed, status: 400
     else
       @item.save!
+
+      params['answers'].each do |content|
+        @answer = @item.answers.new content: content
+        @answer.save!
+      end
     end
   end
 

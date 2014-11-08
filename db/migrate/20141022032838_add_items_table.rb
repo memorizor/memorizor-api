@@ -11,6 +11,9 @@ class AddItemsTable < ActiveRecord::Migration
 
     create_table :answers do |t|
       t.text :content, null: false
+      t.integer :question_id
     end
+
+    add_index :answers, :question_id, unique: true
   end
 end

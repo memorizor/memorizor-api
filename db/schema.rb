@@ -17,8 +17,11 @@ ActiveRecord::Schema.define(version: 20141022032838) do
   enable_extension "plpgsql"
 
   create_table "answers", force: true do |t|
-    t.text "content", null: false
+    t.text    "content",     null: false
+    t.integer "question_id"
   end
+
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", unique: true, using: :btree
 
   create_table "questions", force: true do |t|
     t.text     "content",     null: false
