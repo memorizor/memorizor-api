@@ -7,13 +7,13 @@ class AddItemsTable < ActiveRecord::Migration
       t.integer :user_id
     end
 
-    add_index :questions, :user_id, unique: true
+    add_index :questions, :user_id
 
     create_table :answers do |t|
       t.text :content, null: false
       t.integer :question_id
     end
 
-    add_index :answers, :question_id, unique: true
+    add_index :answers, :question_id
   end
 end

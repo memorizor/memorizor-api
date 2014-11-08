@@ -13,3 +13,8 @@ verified_user:
   email: verified@fixture.com
   password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
   verified: true
+active_user:
+  name: a_user
+  email: a_user@fixture.com
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  verified: true

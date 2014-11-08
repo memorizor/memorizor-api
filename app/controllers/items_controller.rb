@@ -5,7 +5,7 @@ class ItemsController < ActionController::Base
   before_filter :require_verification
 
   def index
-    render nothing: true
+    @user = authenticated_user
   end
 
   def create

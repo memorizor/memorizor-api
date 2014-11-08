@@ -1,0 +1,10 @@
+test:
+  user: active_user
+  content: 'Is this a test?'
+  answer_type: 0
+  review_at: '2000-01-01 01:00:00 +0000'
+a_hitchhikers_guide_to_the_galaxy:
+  user: active_user
+  content: 'What is the meaning of life, the universe and everything?'
+  answer_type: 0
+  review_at: '2000-01-01 01:00:00 +0000'

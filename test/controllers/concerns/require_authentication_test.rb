@@ -1,6 +1,10 @@
 require 'json'
 
 class RequireAuthenticationTest < ActionController::TestCase
+  def setup
+    @request.headers['Accept'] = 'application/json'
+  end
+
   # Use user#get to test RequireAuthentication concern
   test 'Returns an error without a token' do
     @controller = UsersController.new

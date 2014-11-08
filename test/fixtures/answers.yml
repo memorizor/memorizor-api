@@ -1,0 +1,9 @@
+test_answer_1:
+  question: test
+  content: 'It is.'
+test_answer_2:
+  question: test
+  content: 'Why are asking me?'
+a_hitchhikers_guide_to_the_galaxy_answer:
+  question: a_hitchhikers_guide_to_the_galaxy
+  content: '42'

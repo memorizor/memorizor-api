@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20141022032838) do
     t.integer "question_id"
   end
 
-  add_index "answers", ["question_id"], name: "index_answers_on_question_id", unique: true, using: :btree
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
 
   create_table "questions", force: true do |t|
     t.text     "content",     null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20141022032838) do
     t.integer  "user_id"
   end
 
-  add_index "questions", ["user_id"], name: "index_questions_on_user_id", unique: true, using: :btree
+  add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string  "name",                            null: false
