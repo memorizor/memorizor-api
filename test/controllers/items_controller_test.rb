@@ -109,4 +109,14 @@ class ItemsControllerTest < ActionController::TestCase
 
     Token.delete token
   end
+
+  test 'update will throw a error when malformed' do
+    token = Token.generate users(:active_user).id
+    put :update, token: token, id: questions(:test).id, content: 'updated',
+                 type: 123, answers: ['update that']
+    assert_response 400
+    assert_equal [3], JSON.parse(@response.body)['errors']
+
+    Token.delete token
+  end
 end
