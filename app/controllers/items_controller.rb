@@ -34,7 +34,7 @@ class ItemsController < ActionController::Base
   end
 
   def destroy
-    render nothing: true
+    Question.destroy params['id']
   end
 
   private

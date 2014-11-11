@@ -79,4 +79,16 @@ class ItemsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal questions(:test).id, JSON.parse(@response.body)['id']
   end
+
+  test 'Destroy deletes question and respective answer' do
+    token = Token.generate users(:active_user).id
+
+    assert_difference('Question.count', -1) do
+      assert_difference('Answer.count', -2) do
+        get :destroy, token: token, id: questions(:test).id
+      end
+    end
+
+    assert_response :success
+  end
 end
