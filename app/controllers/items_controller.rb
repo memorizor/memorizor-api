@@ -40,7 +40,7 @@ class ItemsController < ActionController::Base
       @question.save!
 
       if params.key?(:answers)
-        @question.answers.each(&:destroy!)
+        @question.answers.each(&:destroy)
 
         params['answers'].each do |content|
           @answer = @question.answers.new(content: content).save!
@@ -50,7 +50,7 @@ class ItemsController < ActionController::Base
   end
 
   def destroy
-    Question.destroy! params['id']
+    Question.destroy params['id']
   end
 
   private

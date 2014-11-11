@@ -96,13 +96,13 @@ class ItemsControllerTest < ActionController::TestCase
     token = Token.generate users(:active_user).id
     put :update, token: token, id: questions(:test).id, content: 'updated',
                  type: 0, answers: ['update that']
-
     assert_response :success
     assert_equal 'updated',
                  Question.find_by_id(JSON.parse(@response.body)['id']).content
     assert_equal 1,
                  Question.find_by_id(JSON.parse(@response.body)['id'])
       .answers.length
+    assert_equal 1, JSON.parse(@response.body)['answers'].length
     assert_equal 'update that',
                  Question.find_by_id(JSON.parse(@response.body)['id'])
       .answers[0].content
