@@ -8,3 +8,8 @@ a_hitchhikers_guide_to_the_galaxy:
   content: 'What is the meaning of life, the universe and everything?'
   answer_type: 0
   review_at: '2000-01-01 01:00:00 +0000'
+nother_test:
+  user: verified_user
+  content: 'Is this another test?'
+  answer_type: 0
+  review_at: '2000-01-01 01:00:00 +0000'

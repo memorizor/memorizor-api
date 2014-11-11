@@ -7,3 +7,6 @@ test_answer_2:
 a_hitchhikers_guide_to_the_galaxy_answer:
   question: a_hitchhikers_guide_to_the_galaxy
   content: '42'
+nother_answer:
+  question: nother_test
+  content: 'sure'

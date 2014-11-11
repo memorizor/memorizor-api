@@ -53,4 +53,30 @@ class ItemsControllerTest < ActionController::TestCase
                  @response.body
     Token.delete token
   end
+
+  # Use Items#show to test require_ownership
+
+  test 'Throws 404 when item does not exist' do
+    token = Token.generate users(:active_user).id
+    get :show, token: token, id: 123_456_789
+
+    assert_response 404
+    assert_equal [404], JSON.parse(@response.body)['errors']
+  end
+
+  test 'Throws 404 when user is not the owner' do
+    token = Token.generate users(:active_user).id
+    get :show, token: token, id: questions(:nother_test).id
+
+    assert_response 404
+    assert_equal [404], JSON.parse(@response.body)['errors']
+  end
+
+  test 'Works when user is the owner' do
+    token = Token.generate users(:active_user).id
+    get :show, token: token, id: questions(:test).id
+
+    assert_response :success
+    assert_equal questions(:test).id, JSON.parse(@response.body)['id']
+  end
 end

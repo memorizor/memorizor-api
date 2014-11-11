@@ -3,6 +3,7 @@ class ItemsController < ActionController::Base
   respond_to :json
   before_filter :require_authentication
   before_filter :require_verification
+  before_filter :require_ownership, only: [:show, :update, :destroy]
 
   def index
     @user = authenticated_user
@@ -25,7 +26,7 @@ class ItemsController < ActionController::Base
   end
 
   def show
-    render nothing: true
+    @item = Question.find_by_id params['id']
   end
 
   def update
@@ -34,5 +35,15 @@ class ItemsController < ActionController::Base
 
   def destroy
     render nothing: true
+  end
+
+  private
+
+  def require_ownership
+    @question = Question.find_by_id(params['id'])
+    @user = User.find_by_id(Token.authenticate(params['token']))
+
+    render template: 'not_found', status: 404 if
+      @question.nil? || @question.user_id != @user.id
   end
 end
