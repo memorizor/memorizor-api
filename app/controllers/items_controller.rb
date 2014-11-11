@@ -50,7 +50,7 @@ class ItemsController < ActionController::Base
   end
 
   def destroy
-    Question.destroy params['id']
+    Question.destroy! params['id']
   end
 
   private
