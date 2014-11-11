@@ -30,7 +30,23 @@ class ItemsController < ActionController::Base
   end
 
   def update
-    render nothing: true
+    @question = Question.find_by_id params['id']
+    @question.content = params['content'] if params.key?(:content)
+    @question.answer_type = params['type'] if params.key?(:type)
+
+    if @question.invalid?
+      render :create_question_malformed, status: 400
+    else
+      @question.save!
+
+      if params.key?(:answers)
+        @question.answers.each(&:destroy!)
+
+        params['answers'].each do |content|
+          @answer = @question.answers.new(content: content).save!
+        end
+      end
+    end
   end
 
   def destroy
