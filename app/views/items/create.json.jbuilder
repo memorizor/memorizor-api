@@ -1,1 +1,1 @@
-json.id @item.id
+json.partial! 'items/item', question: @item
