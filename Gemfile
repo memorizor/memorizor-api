@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 ruby '2.1.5'
 
-gem 'rails', '4.1.7'
+gem 'rails', '4.1.8'
 gem 'pg', '~> 0.17.1'
-gem 'jbuilder', '~> 2.2.4'
+gem 'jbuilder', '~> 2.2.5'
 gem 'bcrypt', '~> 3.1.9'
 gem 'unicorn', '~> 4.8.3'
 gem 'redis', '~> 3.1.0'
