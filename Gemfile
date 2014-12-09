@@ -8,6 +8,7 @@ gem 'bcrypt', '~> 3.1.9'
 gem 'unicorn', '~> 4.8.3'
 gem 'redis', '~> 3.1.0'
 gem 'rack-cors', '~> 0.2.9'
+gem 'kaminari', '~> 0.16.1'
 
 gem 'spring', group: :development
 gem 'rake', group: :development

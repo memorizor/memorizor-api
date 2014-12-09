@@ -43,6 +43,9 @@ GEM
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     json (1.8.1)
+    kaminari (0.16.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.9.2)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
@@ -117,6 +120,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.9)
   codeclimate-test-reporter
   jbuilder (~> 2.2.5)
+  kaminari (~> 0.16.1)
   pg (~> 0.17.1)
   rack-cors (~> 0.2.9)
   rails (= 4.1.8)

@@ -1,1 +1,1 @@
-json.array! @user.questions, partial: 'items/item', as: :question
+json.array! @page, partial: 'items/item', as: :question

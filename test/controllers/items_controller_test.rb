@@ -40,17 +40,14 @@ class ItemsControllerTest < ActionController::TestCase
   end
 
   test 'index works' do
-    token = Token.generate users(:active_user).id
-    get :index, token: token
+    token = Token.generate users(:super_active_user).id
+    get :index, token: token, per: 25, page: 2
 
     assert_response :success
-    assert_equal '[{"id":411008527,"review_at":"2000-01-01T01:00:00.000Z",'\
-                 '"type":0,"content":"Is this a test?","answers":["It is.",'\
-                 '"Why are asking me?"]},{"id":926490937,'\
-                 '"review_at":"2000-01-01T01:00:00.000Z","type":0,'\
-                 '"content":"What is the meaning of life,'\
-                 ' the universe and everything?","answers":["42"]}]',
-                 @response.body
+    assert_equal 25, JSON.parse(@response.body).length
+    assert_equal 4, @response.headers['TOTAL-PAGES']
+    assert_equal 2, @response.headers['CURRENT-PAGE']
+
     Token.delete token
   end
 

@@ -10,3 +10,10 @@ a_hitchhikers_guide_to_the_galaxy_answer:
 nother_answer:
   question: nother_test
   content: 'sure'
+
+# For Pagination Testing
+<% 100.times do |n| %>
+answer_<%= n %>:
+  question: question_<%= n %>
+  content: '<%= n %>'
+<% end %>

@@ -6,7 +6,11 @@ class ItemsController < ActionController::Base
   before_filter :require_ownership, only: [:show, :update, :destroy]
 
   def index
-    @user = authenticated_user
+    @current_page = params['page'] || 1
+    @per = params['per'] || 10
+    @page = authenticated_user.questions.page(@page).per(@per)
+    response.headers['TOTAL-PAGES'] = @page.total_pages
+    response.headers['CURRENT-PAGE'] = @current_page.to_i
   end
 
   def create
