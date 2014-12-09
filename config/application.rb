@@ -29,7 +29,8 @@ module Memorizor
       allow do
         origins '*'
         resource '*', methods: [:get, :post, :options, :head, :patch, :put,
-                                :delete]
+                                :delete],
+                      expose: ['TOTAL-PAGES', 'CURRENT-PAGE']
       end
     end
   end
