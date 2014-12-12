@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :items, except: [:new, :edit]
 
+  get '/reviews' => 'reviews#index'
+
   post '/register' => 'users#create'
 
   post '/authenticate' => 'users#authenticate'

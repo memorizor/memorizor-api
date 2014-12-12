@@ -15,10 +15,18 @@ nother_test:
   review_at: '2000-01-01 01:00:00 +0000'
 
 # For Pagination Testing
-<% 100.times do |n| %>
-question_<%= n %>:
+<% 50.times do |n| %>
+question_old_<%= n %>:
   user: super_active_user
   content: '<%= n %>'
   answer_type: 0
   review_at: '2000-01-01 01:00:00 +0000'
+<% end %>
+
+<% 50.times do |n| %>
+question_new_<%= n %>:
+  user: super_active_user
+  content: '<%= n %>'
+  answer_type: 0
+  review_at: '2200-01-01 01:00:00 +0000'
 <% end %>

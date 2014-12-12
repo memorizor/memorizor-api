@@ -12,8 +12,14 @@ nother_answer:
   content: 'sure'
 
 # For Pagination Testing
-<% 100.times do |n| %>
-answer_<%= n %>:
-  question: question_<%= n %>
+<% 50.times do |n| %>
+answer_old_<%= n %>:
+  question: question_old_<%= n %>
+  content: '<%= n %>'
+<% end %>
+
+<% 50.times do |n| %>
+answer_new_<%= n %>:
+  question: question_new_<%= n %>
   content: '<%= n %>'
 <% end %>
