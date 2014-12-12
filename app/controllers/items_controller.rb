@@ -1,16 +1,15 @@
 class ItemsController < ActionController::Base
   include RequireAuthentication
+  include Pagination
+
   respond_to :json
   before_filter :require_authentication
   before_filter :require_verification
   before_filter :require_ownership, only: [:show, :update, :destroy]
 
   def index
-    @current_page = params['page'] || 1
-    @per = params['per'] || 10
-    @page = authenticated_user.questions.page(@page).per(@per)
-    response.headers['TOTAL-PAGES'] = @page.total_pages
-    response.headers['CURRENT-PAGE'] = @current_page.to_i
+    @page = authenticated_user.questions.page(current_page).per(per_page)
+    pagination_headers(@page.total_pages)
   end
 
   def create
