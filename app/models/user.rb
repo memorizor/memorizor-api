@@ -13,4 +13,8 @@ class User < ActiveRecord::Base
   validates_presence_of :password, on: :create
 
   has_many :questions
+
+  def reviews
+    questions.where('review_at < ?', Time.now)
+  end
 end

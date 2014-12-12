@@ -48,4 +48,10 @@ class UserTest < ActiveSupport::TestCase
     user.valid?
     assert user.errors['name'].include? 'has already been taken'
   end
+
+  test 'Should correctly list reviews' do
+    assert_equal 1, users(:active_user).reviews.length
+    assert_equal questions(:test).id,
+                 users(:active_user).reviews[0].id
+  end
 end
