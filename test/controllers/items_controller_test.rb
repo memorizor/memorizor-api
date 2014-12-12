@@ -14,7 +14,7 @@ class ItemsControllerTest < ActionController::TestCase
                  Question.find_by_id(JSON.parse(@response.body)['id']).content
     assert_equal 'testing',
                  Question.find_by_id(JSON.parse(@response.body)['id'])
-      .answers[0].content
+                   .answers[0].content
 
     Token.delete token
   end
@@ -102,7 +102,7 @@ class ItemsControllerTest < ActionController::TestCase
     assert_equal 1, JSON.parse(@response.body)['answers'].length
     assert_equal 'update that',
                  Question.find_by_id(JSON.parse(@response.body)['id'])
-      .answers[0].content
+                   .answers[0].content
 
     Token.delete token
   end

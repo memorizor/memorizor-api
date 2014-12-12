@@ -26,9 +26,5 @@ end
 private
 
 def reset_token_valid
-  if params.key? 'reset_token'
-    ResetToken.valid? params['reset_token']
-  else
-    nil
-  end
+  ResetToken.valid? params['reset_token'] if params.key? 'reset_token'
 end

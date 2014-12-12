@@ -19,8 +19,6 @@ class Token
     if $redis.exists('token.' << token)
       $redis.expire('token.' << token, SECONDS_UNTIL_EXPIRATION)
       $redis.get('token.' << token)
-    else
-      nil
     end
   end
 end
