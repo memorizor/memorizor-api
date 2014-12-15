@@ -11,23 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141022032838) do
+ActiveRecord::Schema.define(version: 20141214183400) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: true do |t|
     t.text    "content",     null: false
-    t.integer "question_id"
+    t.integer "question_id", null: false
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id", using: :btree
+
+  create_table "catagories", force: true do |t|
+    t.string  "name",    null: false
+    t.string  "color",   null: false
+    t.integer "user_id", null: false
+  end
+
+  add_index "catagories", ["user_id"], name: "index_catagories_on_user_id", using: :btree
+
+  create_table "catagories_questions", id: false, force: true do |t|
+    t.integer "catagory_id", null: false
+    t.integer "question_id", null: false
+  end
 
   create_table "questions", force: true do |t|
     t.text     "content",     null: false
     t.datetime "review_at",   null: false
     t.integer  "answer_type", null: false
-    t.integer  "user_id"
+    t.integer  "user_id",     null: false
   end
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree
