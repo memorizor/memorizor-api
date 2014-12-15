@@ -1,0 +1,12 @@
+test_catagory:
+  user: active_user
+  name: 'Test Catagory'
+  color: 'ffffff'
+cool_catagory:
+  user: active_user
+  name: 'Cool Catagory'
+  color: '000000'
+other_catagory:
+  user: verified_user
+  name: 'That Other Catagory'
+  color: '7f7f7f'

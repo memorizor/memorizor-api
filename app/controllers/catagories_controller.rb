@@ -30,10 +30,10 @@ class CatagoriesController < ActionController::Base
   private
 
   def require_ownership
-    @question = Question.find_by_id(params['id'])
+    @catagory = Catagory.find_by_id(params['id'])
     @user = User.find_by_id(Token.authenticate(params['token']))
 
     render template: 'not_found', status: 404 if
-      @question.nil? || @question.user_id != @user.id
+      @catagory.nil? || @catagory.user_id != @user.id
   end
 end
