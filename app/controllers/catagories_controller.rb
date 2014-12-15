@@ -1,4 +1,4 @@
-class ItemsController < ActionController::Base
+class CatagoriesController < ActionController::Base
   include RequireAuthentication
   include Pagination
 
