@@ -16,6 +16,14 @@ module RequireAuthentication
       authenticated_user.verified
   end
 
+  def require_ownership(model_object)
+    @object = model_object.find_by_id(params['id'])
+    @user = User.find_by_id(Token.authenticate(params['token']))
+
+    render template: 'not_found', status: 404 if
+    @object.nil? || @object.user_id != @user.id
+  end
+
   def authenticated_user
     @user = User.find_by_id(Token.authenticate(params['token']))
   end

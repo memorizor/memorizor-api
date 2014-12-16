@@ -5,7 +5,9 @@ class CatagoriesController < ActionController::Base
   respond_to :json
   before_filter :require_authentication
   before_filter :require_verification
-  before_filter :require_ownership, only: [:show, :update, :destroy]
+  before_filter only: [:show, :update, :destroy] do
+    require_ownership(Catagory)
+  end
 
   def index
     render nothing: true
@@ -25,15 +27,5 @@ class CatagoriesController < ActionController::Base
 
   def destroy
     render nothing: true
-  end
-
-  private
-
-  def require_ownership
-    @catagory = Catagory.find_by_id(params['id'])
-    @user = User.find_by_id(Token.authenticate(params['token']))
-
-    render template: 'not_found', status: 404 if
-      @catagory.nil? || @catagory.user_id != @user.id
   end
 end

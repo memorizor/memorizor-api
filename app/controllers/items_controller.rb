@@ -5,7 +5,9 @@ class ItemsController < ActionController::Base
   respond_to :json
   before_filter :require_authentication
   before_filter :require_verification
-  before_filter :require_ownership, only: [:show, :update, :destroy]
+  before_filter only: [:show, :update, :destroy] do
+    require_ownership(Question)
+  end
 
   def index
     @page = authenticated_user.questions.page(current_page).per(per_page)
@@ -54,15 +56,5 @@ class ItemsController < ActionController::Base
 
   def destroy
     Question.destroy params['id']
-  end
-
-  private
-
-  def require_ownership
-    @question = Question.find_by_id(params['id'])
-    @user = User.find_by_id(Token.authenticate(params['token']))
-
-    render template: 'not_found', status: 404 if
-      @question.nil? || @question.user_id != @user.id
   end
 end
