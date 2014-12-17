@@ -7,11 +7,16 @@ class CatagoriesControllerTest < ActionController::TestCase
 
   test 'Create works' do
     token = Token.generate users(:verified_user).id
-    post :create, token: token, name: 'it works', color: 'ffffff'
+    post :create, token: token, name: 'it works', color: 'ffffff',
+                  questions: [questions(:nother_test).id]
 
     assert_response :success
     assert_equal 'it works',
                  Catagory.find_by_id(JSON.parse(@response.body)['id']).name
+    assert_equal questions(:nother_test),
+                 Catagory.find_by_id(JSON.parse(@response.body)['id'])
+                   .questions[0]
+
     Token.delete token
   end
 
