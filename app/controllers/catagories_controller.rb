@@ -14,7 +14,19 @@ class CatagoriesController < ActionController::Base
   end
 
   def create
-    render nothing: true
+    @user = authenticated_user
+    @catagory = @user.catagories.new name: params['name'],
+                                     color: (params['color'] || '').downcase
+
+    (params['questions'] || []).each do |question_id|
+      @catagory.questions << Question.find_by_id(question_id)
+    end
+
+    if @catagory.invalid?
+      render :create_malformed, status: 400
+    else
+      @catagory.save!
+    end
   end
 
   def show
