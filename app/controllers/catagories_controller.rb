@@ -38,6 +38,6 @@ class CatagoriesController < ActionController::Base
   end
 
   def destroy
-    render nothing: true
+    Catagory.destroy params['id']
   end
 end
