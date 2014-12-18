@@ -10,3 +10,33 @@ other_catagory:
   user: verified_user
   name: 'That Other Catagory'
   color: '7f7f7f'
+
+# For Pagination Testing
+
+<% 25.times do |n| %>
+catagory_old_<%= n %>:
+  user: super_active_user
+  questions:
+    - question_old_1
+    - question_old_2
+    - question_old_3
+    - question_old_4
+    - question_old_5
+    - question_old_6
+  name: '<%= n %>'
+  color: 'ffffff'
+<% end %>
+
+<% 25.times do |n| %>
+catagory_new_<%= n %>:
+  user: super_active_user
+  questions:
+    - question_new_1
+    - question_new_2
+    - question_new_3
+    - question_new_4
+    - question_new_5
+    - question_new_6
+  name: '<%= n %>'
+  color: '000000'
+<% end %>

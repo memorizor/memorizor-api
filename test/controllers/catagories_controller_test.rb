@@ -5,6 +5,19 @@ class CatagoriesControllerTest < ActionController::TestCase
     @request.headers['Accept'] = 'application/json'
   end
 
+  test 'index works' do
+    token = Token.generate users(:super_active_user).id
+    get :index, token: token, per: 25, page: 2, items_max: 2
+
+    assert_response :success
+    assert_equal 25, JSON.parse(@response.body).length
+    assert_equal 2, JSON.parse(@response.body)[0]['questions'].length
+    assert_equal 2, @response.headers['TOTAL-PAGES']
+    assert_equal 2, @response.headers['CURRENT-PAGE']
+
+    Token.delete token
+  end
+
   test 'Create works' do
     token = Token.generate users(:verified_user).id
     post :create, token: token, name: 'it works', color: 'ffffff',

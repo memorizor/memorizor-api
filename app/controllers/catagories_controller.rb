@@ -10,7 +10,9 @@ class CatagoriesController < ActionController::Base
   end
 
   def index
-    render nothing: true
+    @page = authenticated_user.catagories.page(current_page).per(per_page)
+    @items_max = params['items_max'].to_i - 1
+    pagination_headers(@page.total_pages)
   end
 
   def create
