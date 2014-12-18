@@ -30,7 +30,7 @@ class CatagoriesController < ActionController::Base
   end
 
   def show
-    render nothing: true
+    @catagory = Catagory.find_by_id params['id']
   end
 
   def update

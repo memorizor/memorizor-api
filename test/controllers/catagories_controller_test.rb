@@ -40,7 +40,7 @@ class CatagoriesControllerTest < ActionController::TestCase
 
   # Use Catagories#show to test require_ownership
 
-  test 'Throws 404 when catafory does not exist' do
+  test 'Throws 404 when catagory does not exist' do
     token = Token.generate users(:active_user).id
     get :show, token: token, id: 123_456_789
 
@@ -61,7 +61,7 @@ class CatagoriesControllerTest < ActionController::TestCase
     get :show, token: token, id: catagories(:test_catagory).id
 
     assert_response :success
-    # assert_equal questions(:test).id, JSON.parse(@response.body)['id']
+    assert_equal catagories(:test_catagory).id, JSON.parse(@response.body)['id']
   end
 
   test 'Destroy deletes question and respective answer' do
