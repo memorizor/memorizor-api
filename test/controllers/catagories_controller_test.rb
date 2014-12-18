@@ -40,7 +40,7 @@ class CatagoriesControllerTest < ActionController::TestCase
 
   test 'Update Works' do
     token = Token.generate users(:verified_user).id
-    post :create, token: token, id: catagories(:other_catagory),
+    post :update, token: token, id: catagories(:other_catagory),
                   name: 'update works', color: '000000',
                   questions: [questions(:nother_test).id]
 
