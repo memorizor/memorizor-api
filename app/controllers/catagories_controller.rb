@@ -18,9 +18,7 @@ class CatagoriesController < ActionController::Base
     @catagory = @user.catagories.new name: params['name'],
                                      color: (params['color'] || '').downcase
 
-    (params['questions'] || []).each do |question_id|
-      @catagory.questions << Question.find_by_id(question_id)
-    end
+    @catagory.add_questions((params['questions'] || []), @user)
 
     if @catagory.invalid?
       render :create_malformed, status: 400
@@ -45,10 +43,7 @@ class CatagoriesController < ActionController::Base
 
       if params.key?(:questions)
         @catagory.questions.clear
-
-        params['questions'].each do |question_id|
-          @catagory.questions << Question.find_by_id(question_id)
-        end
+        @catagory.add_questions(params['questions'], authenticated_user)
       end
     end
   end
