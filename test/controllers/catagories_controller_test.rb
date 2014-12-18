@@ -38,6 +38,24 @@ class CatagoriesControllerTest < ActionController::TestCase
     Token.delete token
   end
 
+  test 'Update Works' do
+    token = Token.generate users(:verified_user).id
+    post :create, token: token, id: catagories(:other_catagory),
+                  name: 'update works', color: '000000',
+                  questions: [questions(:nother_test).id]
+
+    assert_response :success
+    assert_equal 'update works',
+                 Catagory.find_by_id(JSON.parse(@response.body)['id']).name
+    assert_equal '000000',
+                 Catagory.find_by_id(JSON.parse(@response.body)['id']).color
+    assert_equal questions(:nother_test),
+                 Catagory.find_by_id(JSON.parse(@response.body)['id'])
+                   .questions[0]
+
+    Token.delete token
+  end
+
   # Use Catagories#show to test require_ownership
 
   test 'Throws 404 when catagory does not exist' do

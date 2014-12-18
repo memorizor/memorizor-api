@@ -34,7 +34,23 @@ class CatagoriesController < ActionController::Base
   end
 
   def update
-    render nothing: true
+    @catagory = Catagory.find_by_id params['id']
+    @catagory.name = params['name'] if params.key?(:name)
+    @catagory.color = params['color'] if params.key?(:color)
+
+    if @catagory.invalid?
+      render :create_malformed, status: 400
+    else
+      @catagory.save!
+
+      if params.key?(:questions)
+        @catagory.questions.clear
+
+        params['questions'].each do |question_id|
+          @catagory.questions << Question.find_by_id(question_id)
+        end
+      end
+    end
   end
 
   def destroy
