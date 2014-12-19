@@ -7,7 +7,7 @@ rvm:
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.travis.yml config/database.yml
-  - RACK_ENV=test bundle exec rake db:setup
+  - RACK_ENV=test bundle exec rake db:migrate
 addons:
   postgresql: "9.3"
 services:
