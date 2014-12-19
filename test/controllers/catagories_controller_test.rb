@@ -11,7 +11,11 @@ class CatagoriesControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_equal 25, JSON.parse(@response.body).length
-    assert_equal 2, JSON.parse(@response.body)[0]['questions'].length
+
+    JSON.parse(@response.body).each do |catagory|
+      assert_equal 2, catagory['questions'].length
+    end
+
     assert_equal 2, @response.headers['TOTAL-PAGES']
     assert_equal 2, @response.headers['CURRENT-PAGE']
 
