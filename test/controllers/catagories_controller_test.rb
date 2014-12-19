@@ -9,6 +9,8 @@ class CatagoriesControllerTest < ActionController::TestCase
     token = Token.generate users(:super_active_user).id
     get :index, token: token, per: 25, page: 2, items_max: 2
 
+    puts @response.body
+
     assert_response :success
     assert_equal 25, JSON.parse(@response.body).length
 
