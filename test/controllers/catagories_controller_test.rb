@@ -15,7 +15,7 @@ class CatagoriesControllerTest < ActionController::TestCase
     assert_equal 25, JSON.parse(@response.body).length
 
     JSON.parse(@response.body).each do |catagory|
-      assert_equal 2, catagory['questions'].length
+      assert_equal 2, catagory['items'].length
     end
 
     assert_equal 2, @response.headers['TOTAL-PAGES']

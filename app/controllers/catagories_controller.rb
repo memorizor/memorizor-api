@@ -11,7 +11,7 @@ class CatagoriesController < ActionController::Base
 
   def index
     @page = authenticated_user.catagories.page(current_page).per(per_page)
-    @items_max = params['items_max'].to_i - 1
+    @items_max = params['items_max'].to_i
     pagination_headers(@page.total_pages)
   end
 
