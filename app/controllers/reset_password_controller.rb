@@ -5,7 +5,7 @@ class ResetPasswordController < ActionController::Base
     @user = User.find_by(email: params['email'])
     return if @user.nil?
     @reset_token = ResetToken.generate(@user.id)
-    UserMailer.reset_email(@reset_token, @user).deliver
+    UserMailer.reset_email(@reset_token, @user).deliver_now
   end
 
   def valid

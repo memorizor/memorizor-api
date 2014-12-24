@@ -3,9 +3,9 @@ class CatagoriesController < ActionController::Base
   include Pagination
 
   respond_to :json
-  before_filter :require_authentication
-  before_filter :require_verification
-  before_filter only: [:show, :update, :destroy] do
+  before_action :require_authentication
+  before_action :require_verification
+  before_action only: [:show, :update, :destroy] do
     require_ownership(Catagory)
   end
 

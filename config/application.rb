@@ -25,7 +25,7 @@ module Memorizor
     # '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.middleware.insert_before 'ActionDispatch::Static', 'Rack::Cors' do
+    config.middleware.insert_before 0, 'Rack::Cors' do
       allow do
         origins '*'
         resource '*', methods: [:get, :post, :options, :head, :patch, :put,
@@ -33,5 +33,7 @@ module Memorizor
                       expose: ['TOTAL-PAGES', 'CURRENT-PAGE']
       end
     end
+
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end

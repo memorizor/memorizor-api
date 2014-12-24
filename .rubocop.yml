@@ -9,6 +9,7 @@ AllCops:
     - 'db/schema.rb'
     - 'bin/*'
     - 'vendor/**/*'
+    - '.c9/**/*'
 Documentation:
   Enabled: false
 GlobalVars:

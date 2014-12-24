@@ -1,7 +1,7 @@
 class UsersController < ActionController::Base
   include RequireAuthentication
   respond_to :json
-  before_filter :require_authentication, only: [:get, :update, :logout]
+  before_action :require_authentication, only: [:get, :update, :logout]
 
   def create
     @user = User.new name: params['name'], password: params['password'],
@@ -11,7 +11,7 @@ class UsersController < ActionController::Base
       render :create_malformed, status: 400
     else
       @user.save!
-      UserMailer.welcome_email(@user).deliver
+      UserMailer.welcome_email(@user).deliver_now
     end
   end
 
