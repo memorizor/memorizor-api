@@ -9,7 +9,7 @@ gem 'bcrypt', '~> 3.1.9'
 gem 'unicorn', '~> 4.8.3'
 gem 'redis', '~> 3.2.0'
 gem 'rack-cors', '~> 0.3.1'
-gem 'kaminari', '~> 0.16.1'
+gem 'kaminari', '~> 0.16.2'
 
 gem 'spring', group: :development
 gem 'rake', group: :development
