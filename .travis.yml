@@ -5,6 +5,7 @@ cache: bundler
 rvm:
   - 2.2.0
 before_script:
+  - date
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/database.travis.yml config/database.yml
   - RACK_ENV=test bundle exec rake db:migrate
