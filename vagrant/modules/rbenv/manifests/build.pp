@@ -29,6 +29,11 @@
 #   Default: false
 #   This variable is optional.
 #
+# [%keep]
+#   This is used to keep the source code of a compiled ruby.
+#   Default: false
+#   This variable is optional.
+#
 # [$env]
 #   This is used to set environment variables when compiling ruby.
 #   Default: []
@@ -47,18 +52,32 @@ define rbenv::build (
   $owner       = $rbenv::owner,
   $group       = $rbenv::group,
   $global      = false,
+  $keep        = false,
   $env         = [],
 ) {
   include rbenv
 
   validate_bool($global)
+  validate_bool($keep)
   validate_array($env)
   $environment_for_build = concat(["RBENV_ROOT=${install_dir}"], $env)
 
   Exec {
     cwd     => $install_dir,
-    path    => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/', "${install_dir}/bin/", "${install_dir}/shims/" ],
+    path    => [
+      '/bin/',
+      '/sbin/',
+      '/usr/bin/',
+      '/usr/sbin/',
+      "${install_dir}/bin/",
+      "${install_dir}/shims/"
+    ],
     timeout => 1800,
+  }
+
+  $install_options = $keep ? {
+    true    => ' --keep',
+    default => '',
   }
 
   exec { "own-plugins-${title}":
@@ -75,12 +94,14 @@ define rbenv::build (
     require => Rbenv::Plugin['sstephenson/ruby-build'],
   }->
   exec { "rbenv-install-${title}":
-    command     => "rbenv install ${title}",
+    command     => "rbenv install ${title}${install_options}",
     environment => $environment_for_build,
     creates     => "${install_dir}/versions/${title}",
   }~>
   exec { "rbenv-ownit-${title}":
-    command     => "chown -R ${owner}:${group} ${install_dir}/versions/${title} && chmod -R g+w ${install_dir}/versions/${title}",
+    command     => "chown -R ${owner}:${group} \
+                    ${install_dir}/versions/${title} && \
+                    chmod -R g+w ${install_dir}/versions/${title}",
     user        => 'root',
     refreshonly => true,
   }

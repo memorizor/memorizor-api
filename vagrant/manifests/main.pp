@@ -1,5 +1,6 @@
 class { 'postgresql::globals':
-  version  => '9.3',
+  manage_package_repo => true,
+  version  => '9.4',
 }->
 class { 'postgresql::server': }
 
@@ -46,11 +47,7 @@ class { 'rbenv':
 
 rbenv::plugin { 'sstephenson/ruby-build': }
 
-
-package { 'libffi-dev':
-  ensure => latest,
-} ->
-rbenv::build { '2.2.0':
+rbenv::build { '2.2.1':
   global => true
 } ->
 exec { 'Installing Bundler...':
@@ -76,7 +73,7 @@ exec { 'Granting Write Access to Gems Folder...':
 
 exec { 'Set up databases...':
   command => 'rake db:setup',
-  path    => ['/usr/local/rbenv/versions/2.2.0/bin', '/bin', '/usr/bin'],
+  path    => ['/usr/local/rbenv/versions/2.2.1/bin', '/bin', '/usr/bin'],
   cwd     => '/vagrant',
   require => [Exec['Installing Dependencies...'], Class['postgresql::server']]
 }

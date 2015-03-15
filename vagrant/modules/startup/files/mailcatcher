@@ -3,7 +3,7 @@
 case "$1" in
   start)
     echo "Starting mailcatcher"
-    /usr/local/rbenv/versions/2.2.0/bin/mailcatcher --ip 0.0.0.0
+    /usr/local/rbenv/versions/2.2.1/bin/mailcatcher --ip 0.0.0.0
     exit $?
     ;;
   *)

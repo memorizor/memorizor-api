@@ -11,7 +11,7 @@ class VerifiesController < ActionController::Base
 
     else
       @verification_token = VerificationToken.generate(
-                              Token.authenticate params['token'])
+        Token.authenticate params['token'])
       UserMailer.verify_email(@verification_token, @user).deliver_now
     end
   end
