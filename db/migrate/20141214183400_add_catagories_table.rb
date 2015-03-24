@@ -8,9 +8,9 @@ class AddCatagoriesTable < ActiveRecord::Migration
 
     add_index :catagories, :user_id
 
-    create_table :catagories_questions, id: false do |t|
-      t.integer :catagory_id, null: false
-      t.integer :question_id, null: false
+    create_table :collections do |t|
+      t.integer :catagory_id, null: false, index: true
+      t.integer :question_id, null: false, index: true
     end
   end
 end

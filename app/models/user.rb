@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: { case_sensitive: false },
                     email: true
   has_secure_password
-  validates_presence_of :password, on: :create
+  validates :password, presence: true, on: :create
 
   has_many :questions
   has_many :catagories

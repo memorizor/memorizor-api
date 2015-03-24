@@ -3,7 +3,8 @@ class Catagory < ActiveRecord::Base
   validates :color, presence: true, format: { with: /\A[a-f0-9]{6}\z/ }
 
   belongs_to :user
-  has_and_belongs_to_many :questions
+  has_many :collections
+  has_many :questions, through: :collections
 
   def add_questions(question_ids, user)
     question_ids.each do |question_id|
