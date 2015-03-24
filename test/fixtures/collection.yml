@@ -25,3 +25,31 @@ collection_new_p3_<%= n %>:
   catagory: catagory_new_<%= n %>
   question: question_new_3
 <% end %>
+
+<% 50.times do |n| %>
+collection_question_new_p1_<%= n %>:
+  catagory: catagory_new_1
+  question: question_new_<%= n %>
+
+collection_question_new_p2_<%= n %>:
+  catagory: catagory_new_2
+  question: question_new_<%= n %>
+
+collection_question_new_p3_<%= n %>:
+  catagory: catagory_new_3
+  question: question_new_<%= n %>
+<% end %>
+
+<% 50.times do |n| %>
+collection_question_old_p1_<%= n %>:
+  catagory: catagory_old_1
+  question: question_old_<%= n %>
+
+collection_question_old_p2_<%= n %>:
+  catagory: catagory_old_2
+  question: question_old_<%= n %>
+
+collection_question_old_p3_<%= n %>:
+  catagory: catagory_old_3
+  question: question_old_<%= n %>
+<% end %>
