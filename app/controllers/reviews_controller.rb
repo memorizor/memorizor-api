@@ -20,7 +20,7 @@ class ReviewsController < ActionController::Base
       if params.key? 'correct'
         if params['correct']
           @item.correct
-          else
+        else
             @item.incorrect
         end
 

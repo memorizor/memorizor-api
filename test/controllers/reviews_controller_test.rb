@@ -45,7 +45,7 @@ class ReviewsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal 3, JSON.parse(@response.body)['level']
 
-    review_time=Time.zone.parse(JSON.parse(@response.body)['review_at'])
+    review_time = Time.zone.parse(JSON.parse(@response.body)['review_at'])
     expected_time = 12.hours.from_now
     assert_equal review_time.hour, expected_time.hour
     assert_equal review_time.month, expected_time.month
@@ -61,7 +61,7 @@ class ReviewsControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal 16, JSON.parse(@response.body)['level']
 
-    review_time=Time.zone.parse(JSON.parse(@response.body)['review_at'])
+    review_time = Time.zone.parse(JSON.parse(@response.body)['review_at'])
     expected_time = 730.hours.from_now
     assert_equal review_time.hour, expected_time.hour
     assert_equal review_time.month, expected_time.month

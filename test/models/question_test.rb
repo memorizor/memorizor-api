@@ -62,6 +62,7 @@ class QuestionTest < ActiveSupport::TestCase
   end
 
   test 'is reviewable returns false' do
-    assert_equal questions(:a_hitchhikers_guide_to_the_galaxy).reviewable?, false
+    assert_equal questions(:a_hitchhikers_guide_to_the_galaxy).reviewable?,
+                 false
   end
 end
