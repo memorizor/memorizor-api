@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   resources :items, except: [:new, :edit]
   resources :catagories, except: [:new, :edit]
-
-  get '/reviews' => 'reviews#index'
+  resources :reviews, only: [:index, :update]
 
   post '/register' => 'users#create'
 

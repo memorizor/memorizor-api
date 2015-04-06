@@ -3,16 +3,19 @@ test:
   content: 'Is this a test?'
   answer_type: 0
   review_at: '2000-01-01 01:00:00 +0000'
+  level: 1
 a_hitchhikers_guide_to_the_galaxy:
   user: active_user
   content: 'What is the meaning of life, the universe and everything?'
   answer_type: 0
   review_at: '2200-01-01 01:00:00 +0000'
+  level: 1
 nother_test:
   user: verified_user
   content: 'Is this another test?'
   answer_type: 0
   review_at: '2000-01-01 01:00:00 +0000'
+  level: 1
 
 # For Pagination Testing
 <% 50.times do |n| %>
@@ -21,6 +24,7 @@ question_old_<%= n %>:
   content: '<%= n %>'
   answer_type: 0
   review_at: '2000-01-01 01:00:00 +0000'
+  level: 1
 <% end %>
 
 <% 50.times do |n| %>
@@ -29,4 +33,21 @@ question_new_<%= n %>:
   content: '<%= n %>'
   answer_type: 0
   review_at: '2200-01-01 01:00:00 +0000'
+  level: 1
 <% end %>
+
+# For Review Leveling Testing
+
+max_level:
+  user: review_user
+  content: 'Is this a test'
+  answer_type: 0
+  review_at: '2000-01-01 01:00:00 +0000'
+  level: 19
+
+low_level:
+  user: review_user
+  content: 'Is this a test'
+  answer_type: 0
+  review_at: '2000-01-01 01:00:00 +0000'
+  level: 2

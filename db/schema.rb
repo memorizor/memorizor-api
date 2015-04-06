@@ -40,10 +40,11 @@ ActiveRecord::Schema.define(version: 20141214183400) do
   add_index "collections", ["question_id"], name: "index_collections_on_question_id", using: :btree
 
   create_table "questions", force: :cascade do |t|
-    t.text     "content",     null: false
-    t.datetime "review_at",   null: false
-    t.integer  "answer_type", null: false
-    t.integer  "user_id",     null: false
+    t.text     "content",                 null: false
+    t.datetime "review_at",               null: false
+    t.integer  "answer_type",             null: false
+    t.integer  "user_id",                 null: false
+    t.integer  "level",       default: 1, null: false
   end
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id", using: :btree

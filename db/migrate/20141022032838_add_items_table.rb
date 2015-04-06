@@ -5,6 +5,7 @@ class AddItemsTable < ActiveRecord::Migration
       t.timestamp :review_at, null: false
       t.integer :answer_type, null: false
       t.integer :user_id, null: false
+      t.integer :level, null: false, default: 1
     end
 
     add_index :questions, :user_id
