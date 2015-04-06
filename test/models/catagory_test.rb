@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CatagoriesTest < ActiveSupport::TestCase
+class CatagoryTest < ActiveSupport::TestCase
   test 'Should not add a question without owning it' do
     @catagory = catagories(:test_catagory)
     @question = questions(:nother_test)
@@ -8,7 +8,7 @@ class CatagoriesTest < ActiveSupport::TestCase
     assert_not @catagory.questions.include?(@question)
   end
 
-  test 'Should add a questions when the user owns it' do
+  test 'Should add a question when the user owns it' do
     @catagory = catagories(:test_catagory)
     @question_1 = questions(:test)
     @question_2 = questions(:a_hitchhikers_guide_to_the_galaxy)
