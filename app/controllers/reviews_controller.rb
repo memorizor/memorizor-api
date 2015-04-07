@@ -21,7 +21,7 @@ class ReviewsController < ActionController::Base
         if params['correct']
           @item.correct
         else
-            @item.incorrect
+          @item.incorrect
         end
 
         render template: 'items/show'
