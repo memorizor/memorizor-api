@@ -30,7 +30,6 @@ class Question < ActiveRecord::Base
   end
 
   def reviewable?
-    # puts "\n #{review_at < Time.zone.now} #{review_at} < #{Time.zone.now}\n"
     review_at < Time.zone.now
   end
 
