@@ -47,7 +47,7 @@ class { 'rbenv':
 
 rbenv::plugin { 'sstephenson/ruby-build': }
 
-rbenv::build { '2.2.1':
+rbenv::build { '2.2.2':
   global => true
 } ->
 exec { 'Installing Bundler...':
@@ -73,7 +73,7 @@ exec { 'Granting Write Access to Gems Folder...':
 
 exec { 'Set up databases...':
   command => 'rake db:setup',
-  path    => ['/usr/local/rbenv/versions/2.2.1/bin', '/bin', '/usr/bin'],
+  path    => ['/usr/local/rbenv/versions/2.2.2/bin', '/bin', '/usr/bin'],
   cwd     => '/vagrant',
   require => [Exec['Installing Dependencies...'], Class['postgresql::server']]
 }

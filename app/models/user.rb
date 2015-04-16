@@ -16,6 +16,6 @@ class User < ActiveRecord::Base
   has_many :catagories
 
   def reviews
-    questions.where('review_at < ?', Time.now)
+    questions.where('review_at < ?', Time.zone.now)
   end
 end

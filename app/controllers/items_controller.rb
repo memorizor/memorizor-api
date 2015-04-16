@@ -16,7 +16,8 @@ class ItemsController < ActionController::Base
 
   def create
     @user = authenticated_user
-    @item = @user.questions.new content: params['content'], review_at: Time.now,
+    @item = @user.questions.new content: params['content'],
+                                review_at: Time.zone.now,
                                 answer_type: params['type']
     if @item.invalid?
       render :create_question_malformed, status: 400
