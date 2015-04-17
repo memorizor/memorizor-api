@@ -1,0 +1,23 @@
+web:
+  build: .
+  command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  volumes:
+    - .:/memorizor
+  ports:
+    - "3000:3000"
+  links:
+    - db
+    - redis
+    - mailcatcher
+  env_file:
+    - 'env.web'
+db:
+  image: postgres:9.4.1
+  ports:
+    - "5432"
+redis:
+  image: redis:3.0.0
+mailcatcher:
+    image: schickling/mailcatcher:latest
+    ports:
+      - "1080:1080"

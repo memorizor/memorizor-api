@@ -6,8 +6,9 @@ default: &default
 development:
   <<: *default
   database: memorizor_development
-  username: memorizor
+  username: postgres
   password:
+  host: db
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -15,8 +16,9 @@ development:
 test:
   <<: *default
   database: memorizor_test
-  username: memorizor
+  username: postgres
   password:
+  host: db
 
 production:
   <<: *default
