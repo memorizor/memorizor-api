@@ -19,4 +19,4 @@ You can run our code linter with `docker-compose run web bundle exec rake ruboco
 
 ## Mail Catcher
 
-In the vagrant environment, all mail sent is caught by mailcatcher and can be viewed at `localhost:1080`.
+In the docker-compose environment, all mail sent is caught by mailcatcher and can be viewed at `localhost:1080`.
