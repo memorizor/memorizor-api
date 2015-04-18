@@ -9,13 +9,21 @@ class User < ActiveRecord::Base
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, uniqueness: { case_sensitive: false },
                     email: true
+  validates :plan, presence: true, inclusion: { in: [0, 1, 2] }
+
   has_secure_password
   validates :password, presence: true, on: :create
 
   has_many :questions
   has_many :catagories
 
+  LIMITS = [999_999, 100, 500]
+
   def reviews
     questions.where('review_at < ?', Time.zone.now)
+  end
+
+  def within_plan?
+    questions.count <= LIMITS[plan]
   end
 end

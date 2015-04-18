@@ -28,3 +28,8 @@ review_user:
   email: rev_user@fixture.com
   password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
   verified: true
+plan_breaking_user:
+  name: evil_user
+  email: evil@fixture.com
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  verified: true

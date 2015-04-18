@@ -54,4 +54,12 @@ class UserTest < ActiveSupport::TestCase
     assert_equal questions(:test).id,
                  users(:active_user).reviews[0].id
   end
+
+  test 'is within plan returns true' do
+    assert_equal true, users(:active_user).within_plan?
+  end
+
+  test 'is within plan returns false' do
+    assert_equal false, users(:plan_breaking_user).within_plan?
+  end
 end
