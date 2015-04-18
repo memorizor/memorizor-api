@@ -1,10 +1,12 @@
 class CatagoriesController < ActionController::Base
   include RequireAuthentication
   include Pagination
+  include CheckPlan
 
   respond_to :json
   before_action :require_authentication
   before_action :require_verification
+  before_action :check_plan, only: [:create, :update]
   before_action only: [:show, :update, :destroy] do
     require_ownership(Catagory)
   end

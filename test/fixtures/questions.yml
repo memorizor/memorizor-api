@@ -62,3 +62,12 @@ much_question_<%= n %>:
   review_at: '2200-01-01 01:00:00 +0000'
   level: 1
 <% end %>
+
+<% 100.times do |n| %>
+very_question_<%= n %>:
+  user: plan_max_user
+  content: '<%= n %>'
+  answer_type: 0
+  review_at: '2200-01-01 01:00:00 +0000'
+  level: 1
+<% end %>

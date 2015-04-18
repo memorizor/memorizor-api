@@ -33,3 +33,8 @@ plan_breaking_user:
   email: evil@fixture.com
   password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
   verified: true
+plan_max_user:
+  name: max_user
+  email: max@fixture.com
+  password_digest: <%= BCrypt::Password.create("password", cost: 4) %>
+  verified: true

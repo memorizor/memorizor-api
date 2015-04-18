@@ -26,4 +26,8 @@ class User < ActiveRecord::Base
   def within_plan?
     questions.count <= LIMITS[plan]
   end
+
+  def can_create?
+    questions.count < LIMITS[plan]
+  end
 end

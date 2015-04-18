@@ -1,10 +1,12 @@
 class ReviewsController < ActionController::Base
   include RequireAuthentication
   include Pagination
+  include CheckPlan
 
   respond_to :json
   before_action :require_authentication
   before_action :require_verification
+  before_action :check_plan, only: [:update]
   before_action only: [:update] do
     require_ownership(Question)
   end
