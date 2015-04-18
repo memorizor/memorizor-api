@@ -73,6 +73,17 @@ class CatagoriesControllerTest < ActionController::TestCase
     Token.delete token
   end
 
+  test 'Update throws malformed error' do
+    token = Token.generate users(:verified_user).id
+    post :update, token: token, id: catagories(:other_catagory),
+                  color: 'blah', questions: [questions(:nother_test).id]
+
+    assert_response 400
+    assert_equal [3], JSON.parse(@response.body)['errors']
+
+    Token.delete token
+  end
+
   # Use Catagories#show to test require_ownership
 
   test 'Throws 404 when catagory does not exist' do

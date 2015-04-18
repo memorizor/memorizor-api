@@ -34,7 +34,7 @@ class RequireAuthenticationTest < ActionController::TestCase
     Token.delete(token)
   end
 
-  test 'Works with a verfied user' do
+  test 'Works with a verified user' do
     token = Token.generate users(:verified_user).id
     @controller = ItemsController.new
     get :index, token: token
