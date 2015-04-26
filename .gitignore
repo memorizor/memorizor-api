@@ -9,3 +9,7 @@
 /tmp
 .vagrant/
 .c9/
+
+# Ignore Secret ENV Development Variables
+
+secret-env.web

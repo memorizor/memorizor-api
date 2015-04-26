@@ -1,0 +1,7 @@
+<%= @user.name %>,
+
+Here is your month invoice from <%= Time.zone.parse(@invoice['period_start']).to_s %> to <%= Time.zone.parse(@invoice['period_end']).to_s %>
+You currently are on the <%= @invoice['data']['plan']['name'] %> and your bill for this month is <%= @invoice['total'] %>.
+If you have any questions reguarding this cost, please reply to this email and we will get back to you as soon as possible.
+
+- The Memorizor Team

@@ -55,9 +55,12 @@ ActiveRecord::Schema.define(version: 20150418005354) do
     t.string  "password_digest"
     t.boolean "verified",        default: false
     t.integer "plan",            default: 1
+    t.string  "stripe_id"
+    t.string  "stripe_plan"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["name"], name: "index_users_on_name", unique: true, using: :btree
+  add_index "users", ["stripe_id"], name: "index_users_on_stripe_id", using: :btree
 
 end

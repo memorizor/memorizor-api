@@ -19,4 +19,8 @@ Metrics/MethodLength:
   CountComments: false
   Max: 20
 Metrics/AbcSize:
-  Max: 30
+  Max: 32
+Metrics/PerceivedComplexity:
+  Max: 10
+Metrics/CyclomaticComplexity:
+  Max: 8

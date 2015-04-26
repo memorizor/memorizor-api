@@ -1,12 +1,15 @@
 FROM ruby:2.2.2-slim
 RUN mkdir /memorizor
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
-
 WORKDIR /tmp
 COPY Gemfile Gemfile
 COPY Gemfile.lock Gemfile.lock
-RUN bundle install
+
+RUN  export M_BUILD_DEPS='gcc g++ patch make libpq-dev' \
+&& apt-get update -qq \
+&& apt-get install -y --no-install-recommends $M_BUILD_DEPS \
+&& bundle install \
+&& apt-get purge -y --auto-remove $M_BUILD_DEPS
 
 ADD . /memorizor
 WORKDIR /memorizor

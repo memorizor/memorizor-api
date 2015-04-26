@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, uniqueness: { case_sensitive: false },
                     email: true
-  validates :plan, presence: true, inclusion: { in: [0, 1, 2] }
+  validates :plan, presence: true, inclusion: { in: [0, 1, 2, 3] }
 
   has_secure_password
   validates :password, presence: true, on: :create
@@ -17,7 +17,9 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :catagories
 
-  LIMITS = [999_999, 100, 500]
+  LIMITS = [999_999, 100, 500, 1000]
+
+  PLAN_REGEX = /^[1-3]{1}$/
 
   def reviews
     questions.where('review_at < ?', Time.zone.now)
